@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  mongodb:
+    image: mongo:5.0
+    hostname: mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongodata:/data/db'
+  app:
+    build: .
+    ports:
+      - '80:3000'
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodata:
+
